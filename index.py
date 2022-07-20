@@ -13,7 +13,7 @@ def cadastrar():
     body = request.json 
     for user in usuarios:
         if user["email"] == body["email"]:  
-            return {"algo deu errado":"usuario ja cadastrado"}
+            return {"Algo deu errado.":"Esse usuario ja existe."}
     body = {
         "id": str(uuid.uuid4()),
         "email": body["email"],
@@ -25,8 +25,10 @@ def cadastrar():
 @app.route("/login", methods=['POST'])
 def logar():
     body_login = request.json
-    
+    for login in usuarios:
+        if login["email"] == body_login["email"] and login["senha"] == body_login["senha"]:
+            return{"Status":"Logado."}
+        else:
+            return{"Status":"Usuario ou Senha Incorretos."}
 
 app.run()
-    
-    
