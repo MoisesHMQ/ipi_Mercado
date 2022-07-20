@@ -25,11 +25,7 @@ def cadastrar():
 @app.route("/login", methods=['POST'])
 def logar():
     body_login = request.json
-    for login in usuarios:
-        if login[""]
-
-
-
+    
 
 app.run()
     
