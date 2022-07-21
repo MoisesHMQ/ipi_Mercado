@@ -31,4 +31,44 @@ def logar():
         else:
             return{"Status":"Usuario ou Senha Incorretos."}
 
+@app.route("/carrinho/produtos", methods=['POST'])
+def Frutas():
+    produto_mercado = request.json 
+    for produto_mercado in produtos:
+        if produto_mercado["produtos"] == produto_mercado["produtos"]: 
+            return {"status":"Produto já cadastrado."}
+    produto_mercado = {
+        "id": str(uuid.uuid4()),
+        "produtos": produto_mercado["produtos"]
+        }
+    produtos.append(produto_mercado)
+    return jsonify(produto_mercado)
+
+
+@app.route("/listar/usuarios")
+def listar_usuarios():
+    return jsonify(usuarios)
+
+@app.route("/listar/produtos")
+def listar_produtos():
+    return jsonify(produtos)
+
+
+@app.route("/excluir/usuarios", methods=['POST'])
+def excluir_usuarios():
+    body_excluir = request.json
+    print(usuarios)
+    for list in usuarios:
+        if list["id"] == body_excluir["id"]:
+            usuarios.remove(list)
+            return body_excluir
+
+@app.route("/excluir/produtos", methods=['POST'])
+def excluir_produtos():
+    body_excluir = request.json
+    print(produtos)
+    for list1 in produtos:
+        if list1["id"] == body_excluir["id"]:
+            produtos.remove(list1)
+            return body_excluir
 app.run()
